@@ -42,7 +42,7 @@ if [ $# -eq 0 ]; then
   HOSTNAME=$(echo "$MULLVAD_STATUS" | jq -r '.mullvad_exit_ip_hostname')
   CITY=$(echo "$MULLVAD_STATUS" | jq -r '.city')
   COUNTRY=$(echo "$MULLVAD_STATUS" | jq -r '.country')
-  BLACKLISTED=$(echo "$MULLVAD_STATUS" | jq -r '.blacklisted')
+  BLACKLISTED=$(echo "$MULLVAD_STATUS" | jq -r '.blacklisted' | grep -q true && echo true || echo false)
   SERVERTYPE=$(echo "$MULLVAD_STATUS" | jq -r '.mullvad_server_type')
 
   # Output the extracted information
